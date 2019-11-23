@@ -1,0 +1,43 @@
+mgap_id,gender,geographic_origin,species,sequence_type,sra_accession,total_reads
+m00846,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951007,515693966
+m00847,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951011,806895544
+m00848,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951016,636987306
+m00849,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1927133,614987061
+m00850,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1929270,468765599
+m00851,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1929275,586324669
+m00852,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1929278,480395516
+m00853,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1929293,723816069
+m00853,m,India,Macaca mulatta,Whole Exome,SRR1975636,75266470
+m00854,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1929283,567819638
+m00855,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1929286,557840647
+m00856,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1929307,475538958
+m00856,f,India,Macaca mulatta,Whole Exome,SRR1975694,71442596
+m00857,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1929370,547031468
+m00858,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1929373,551407732
+m00859,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1929379,519369837
+m00860,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1929376,489853394
+m00861,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951153,644443054
+m00862,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1964607,660268161
+m00863,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951144,660407288
+m00864,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951141,637074990
+m00865,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951147,576493386
+m00866,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951150,621895454
+m00867,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1964610,632078549
+m00868,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1964613,596783006
+m00869,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951102,585817936
+m00870,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951105,610121210
+m00871,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951108,626327193
+m00872,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951111,577940768
+m00873,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951114,609061958
+m00874,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1964616,593150368
+m00875,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1964619,597924490
+m00876,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951117,591970545
+m00877,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1951120,577179926
+m03699,f,India,Macaca mulatta,Whole Exome,SRR1975632,76061946
+m03700,f,India,Macaca mulatta,Whole Exome,SRR1975634,86114496
+m03701,f,India,Macaca mulatta,Whole Exome,SRR1975635,110994416
+m03702,m,India,Macaca mulatta,Whole Exome,SRR1975637,74773169
+m03703,m,India,Macaca mulatta,Whole Exome,SRR1975690,90612130
+m03704,m,India,Macaca mulatta,Whole Exome,SRR1975638,71551357
+m03705,m,India,Macaca mulatta,Whole Exome,SRR1975693,53140177
+m03706,m,India,Macaca mulatta,Whole Exome,SRR1975641,51706135

@@ -1,0 +1,3 @@
+mgap_id,gender,geographic_origin,species,sequence_type,sra_accession,total_reads
+m02193,f,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1952198,622575651
+m02194,m,India,Macaca mulatta,Whole Genome: Deep Coverage,SRR1952201,578260544
