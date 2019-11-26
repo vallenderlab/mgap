@@ -124,6 +124,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Remove netrc files
+# netrc
 _netrc
 .netrc
+
+# pylint
+.pylint.d/
