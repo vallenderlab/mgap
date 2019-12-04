@@ -3,15 +3,23 @@
 import labkey
 from pandas.io.json import json_normalize
 
-server_context = labkey.utils.create_server_context(
-    'mgap.ohsu.edu', 'mGAP', use_ssl=True)
 
+def login():
+    """Login to mgap."""
+    machine = 'mgap.ohsu.edu'
+    name = 'mGAP'
+    server_context = labkey.utils.create_server_context(
+        machine, name, use_ssl=True)
+    return server_context
+
+
+server_context = login()
 
 # Getting cohort data
 cohort_data = labkey.query.select_rows(
     server_context=server_context,
     schema_name='study',
-    query_name='demographics',  # or 'sequenceDatasets',
+    query_name='demographics',
     sort='mgapId'
 )
 
@@ -19,19 +27,20 @@ cohort_data = labkey.query.select_rows(
 sequence_data = labkey.query.select_rows(
     server_context=server_context,
     schema_name='mgap',
-    query_name='sequenceDatasets',  # or 'sequenceDatasets',
+    query_name='sequenceDatasets',
     sort='mgapId'
 )
 
-# Turn the json output of the labkey query to a pandas dataframe
-df = json_normalize(cohort_data['rows'])
 
-# Save the dataframe to a csv
-df.to_csv('mgap_demographics.csv', index=False)
+def normalize_data(data, save=True, filename=None):
+    """Turn the json output to a pandas dataframe."""
+    df = json_normalize(data['rows'])
 
-###############################################################################
-########## The below are other examples of accessing the mGAP api.#############
-###############################################################################
+    if save:
+        # Save the dataframe to a csv
+        df.to_csv('mgap_demographics.csv', index=False)
+    return df
+
 
 # Getting phenotype information for the latest genome release
 my_results = labkey.query.select_rows(
