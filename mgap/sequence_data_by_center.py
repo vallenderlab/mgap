@@ -26,7 +26,7 @@ for center in nprcs:
                                   "mgapId": "mgap_id"})
     del newdf["rowid"]
     # Save center by center dataframe
-    newdf.to_csv("data/%s_sequence_data.csv" % center, index=False)
+    #newdf.to_csv("data/%s_sequence_data.csv" % center, index=False)
     ids.extend(x)
     centers.extend(str.split(len(newdf['mgap_id']) * (center + " ")))
     dfs.append(newdf)
@@ -44,13 +44,23 @@ columns = ['mgap_id',
            'total_reads']
 all_nprcs = all_nprcs[columns]
 all_nprcs = all_nprcs.sort_values('primate_center')
-all_nprcs.to_csv("data/all_nprcs_metadata.csv", index=False)
+#all_nprcs.to_csv("data/all_nprcs_metadata.csv", index=False)
 
-no_exome_ids = all_nprcs.query('sequence_type != "Whole Exome"')['mgap_id']
-no_ex_list = list(no_exome_ids)
-only_exomes = all_nprcs[~all_nprcs["mgap_id"].isin(no_ex_list)]
-only_exomes.to_csv("data/all_nprcs_only_exome_available.csv", index=False)
+#no_exome_ids = all_nprcs.query('sequence_type != "Whole Exome"')['mgap_id']
+#no_ex_list = list(no_exome_ids)
+#only_exomes = all_nprcs[~all_nprcs["mgap_id"].isin(no_ex_list)]
+#only_exomes.to_csv("data/all_nprcs_only_exome_available.csv", index=False)
+#
+## Save ids of exome only animals
+#only_exomes['mgap_id'].to_csv(
+#    "data/only_exome_ids.txt", header=False, index=False, sep=' ', mode='w')
 
-# Save ids of exome only animals
-only_exomes['mgap_id'].to_csv(
-    "data/only_exome_ids.txt", header=False, index=False, sep=' ', mode='w')
+
+wgs_ids = all_nprcs.query('sequence_type == "Whole Genome: Deep Coverage"')['mgap_id']
+wgs_list = list(wgs_ids)
+only_wgs = all_nprcs[all_nprcs["mgap_id"].isin(wgs_list)]
+only_wgs.to_csv("../data/all_nprcs_wgs.csv", index=False)
+
+# Save ids of wgs animals
+only_wgs['mgap_id'].to_csv("../data/wgs_ids.txt", header=False, index=False, 
+        sep=' ', mode='w')
