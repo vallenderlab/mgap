@@ -1,9 +1,0 @@
-mgap_id,gender,geographic_origin,species,sequence_type,sra_accession,total_reads
-m03699,f,India,Macaca mulatta,Whole Exome,SRR1975632,76061946
-m03700,f,India,Macaca mulatta,Whole Exome,SRR1975634,86114496
-m03701,f,India,Macaca mulatta,Whole Exome,SRR1975635,110994416
-m03702,m,India,Macaca mulatta,Whole Exome,SRR1975637,74773169
-m03703,m,India,Macaca mulatta,Whole Exome,SRR1975690,90612130
-m03704,m,India,Macaca mulatta,Whole Exome,SRR1975638,71551357
-m03705,m,India,Macaca mulatta,Whole Exome,SRR1975693,53140177
-m03706,m,India,Macaca mulatta,Whole Exome,SRR1975641,51706135
