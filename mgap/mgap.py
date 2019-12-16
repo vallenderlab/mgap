@@ -1,35 +1,57 @@
 # Accessing mGAP's labkey based api
 # This script targets the client api version 0.4.0 and later
+import sys
 import labkey
 from pandas.io.json import json_normalize
 
 
-def login():
-    """Login to mgap."""
-    machine = 'mgap.ohsu.edu'
-    name = 'mGAP'
-    server_context = labkey.utils.create_server_context(
-        machine, name, use_ssl=True)
-    return server_context
+class MGap:
+
+    def __init__(self, path):
+        self.path = path
+        self.centers = ["CPRC", "CNPRC", "TNPRC", "NEPRC", 
+                        "YNPRC", "ONPRC", "WNPRC","SNPRC"]
+
+        self.server_context = self.login()
+        
+    def _get_os(self, path=None):            
+        if sys.platform == "linux":
+            # create .netrc in path or default home
+            pass
+        elif sys.platform == "win32":
+            # create .netrc in path or default home
+            pass
+        else:
+            print('%s not supported.' % sys.platform)
+
+    def login(self, use_ssl=True):
+        """Login to mgap."""
+        machine = 'mgap.ohsu.edu'
+        name = 'mGAP'
+        server_context = labkey.utils.create_server_context(
+            machine, name, use_ssl=use_ssl)
+        return server_context
+
+    def get_cohort_data(self, schema_name="study", query_name="demographics", sort="mgapId"):
+        cohort_data = labkey.query.select_rows(
+            server_context=self.server_context,
+            schema_name=schema_name,
+            query_name=query_name,
+            sort=sort
+        )
+        return cohort_data
+    
+    def get_sequence_data(self):
+        sequence_data = labkey.query.select_rows(
+            server_context=server_context,
+            schema_name='mgap',
+            query_name='sequenceDatasets',
+            sort='mgapId'
+        )
+        return sequence_data
 
 
-server_context = login()
-
-# Getting cohort data
-cohort_data = labkey.query.select_rows(
-    server_context=server_context,
-    schema_name='study',
-    query_name='demographics',
-    sort='mgapId'
-)
-
-# Getting sequence datasets
-sequence_data = labkey.query.select_rows(
-    server_context=server_context,
-    schema_name='mgap',
-    query_name='sequenceDatasets',
-    sort='mgapId'
-)
+server_context = MGap()
 
 
 def normalize_data(data, save=True, filename=None):
