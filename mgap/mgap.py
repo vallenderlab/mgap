@@ -7,14 +7,14 @@ from pandas.io.json import json_normalize
 
 class MGap:
 
-    def __init__(self, path):
+    def __init__(self, path=None):
         self.path = path
-        self.centers = ["CPRC", "CNPRC", "TNPRC", "NEPRC", 
-                        "YNPRC", "ONPRC", "WNPRC","SNPRC"]
+        self.centers = ["CPRC", "CNPRC", "TNPRC", "NEPRC",
+                        "YNPRC", "ONPRC", "WNPRC", "SNPRC"]
 
         self.server_context = self.login()
-        
-    def _get_os(self, path=None):            
+
+    def _get_os(self, path=None):
         if sys.platform == "linux":
             # create .netrc in path or default home
             pass
@@ -40,7 +40,7 @@ class MGap:
             sort=sort
         )
         return cohort_data
-    
+
     def get_sequence_data(self):
         sequence_data = labkey.query.select_rows(
             server_context=server_context,
