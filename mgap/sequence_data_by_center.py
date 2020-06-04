@@ -41,7 +41,6 @@ for center in nprcs:
     no_data_ids = list(set(x).difference(list(newdf.mgap_id)))
     demo = mgap_demo[mgap_demo['Id'].isin(no_data_ids)]
     demo = demo.sort_values(by=['Id'])
-    print(demo)
     # Create empty dataframe
     no_data_df =  pd.DataFrame(index=None, columns= list(newdf.columns))
     no_data_df.mgap_id = no_data_ids
@@ -86,9 +85,14 @@ all_nprcs.to_csv("../data/all_nprcs_metadata.csv", index=False)
 #    "data/only_exome_ids.txt", header=False, index=False, sep=' ', mode='w')
 
 
-wgs = all_nprcs.query('sequence_type != "GBS" & sequence_type != "Whole Exome"')
+wgs = all_nprcs.query('sequence_type != "GBS" & sequence_type != "Whole Exome" & sequence_type == "Whole Genome: Deep Coverage"')
+wgs.sort_values(by=['mgap_id'], inplace=True)
 wgs.to_csv("../data/all_nprcs_wgs.csv", index=False)
 
+wgs_ind = wgs.query('geographic_origin == "India" or geographic_origin == "INDIA"')
+wgs_ind.sort_values(by=['mgap_id'], inplace=True)
+wgs_ind.to_csv("../data/all_nprcs_wgs_india.csv", index=False)
+
 # Save ids of wgs animals
-with open("../data/wgs_ids.txt", 'w') as filehandle:
-    filehandle.writelines("%s\n" % id for id in list(set(wgs.mgap_id)))
+with open("../data/wgs_india_ids.txt", 'w') as filehandle:
+    filehandle.writelines("%s\n" % id for id in list(set(wgs_ind.mgap_id)))
