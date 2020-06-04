@@ -7,7 +7,7 @@ from os import path
 
 # Set the home path of the setup script/package
 home = path.abspath(path.dirname(__file__))
-name = 'labrat'
+name = 'mgap'
 
 
 def readme():
@@ -23,7 +23,7 @@ setup(
     description="",
     version='0.1',
     long_description=readme(),
-    url='https://github.com/vallenderlab/mgap-api',
+    url='https://github.com/vallenderlab/mgap',
     license='MIT',
     keywords='science mgap api',
     classifiers=[
@@ -38,10 +38,10 @@ setup(
         'Programming Language :: Python :: 3.6'
     ],
     project_urls={
-            'Documentation': '',
-            'Releases': 'https://github.com/vallenderlab/mgap-api/releases',
-            'Issues': 'https://github.com/vallenderlab/mgap-api/issues',
-            },
+        'Documentation': '',
+        'Releases': 'https://github.com/vallenderlab/mgap/releases',
+        'Issues': 'https://github.com/vallenderlab/mgap/issues',
+    },
     # Packages will be automatically found if not in this list.
     packages=find_packages(),
     include_package_data=True,
