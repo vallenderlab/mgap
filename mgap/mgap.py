@@ -17,14 +17,28 @@ class MGap:
 
         self.server_context = self.login()
 
-    def _get_os(self, path=None):
-        if not path:
-            path = str(Path.home())
-            print("Path set to: %s" % path)
-        elif not os.path.exists(path):
+    def _set_path(self):
+        if not self.path:
+            self.path = str(Path.home())
+            print("Path set to: %s" % self.path)
+        elif not os.path.exists(self.path):
             raise FileNotFoundError("Path does not exist.")
         else:
-            print("Path set to: %s" % path)
+            print("Path set to: %s" % self.path)
+        return self.path
+    
+    def _get_os(self):
+        if not self.path:
+            self.path = str(Path.home())
+            print("Path set to: %s" % self.path)
+        elif not os.path.exists(self.path):
+            raise FileNotFoundError("Path does not exist.")
+        else:
+            print("Path set to: %s" % self.path)
+        return self.path
+    
+    def _create_netrc(self):
+        
 
     def login(self, use_ssl=True):
         """Login to mgap."""
