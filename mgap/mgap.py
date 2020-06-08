@@ -27,21 +27,21 @@ class MGap:
             print("Path set to: %s" % self.path)
         return self.path
     
-    def _get_os(self):
-        if not self.path:
-            self.path = str(Path.home())
-            print("Path set to: %s" % self.path)
-        elif not os.path.exists(self.path):
-            raise FileNotFoundError("Path does not exist.")
-        else:
-            print("Path set to: %s" % self.path)
-        return self.path
-    
     def _create_netrc(self):
+        if sys.platform == "linux":
+            # create .netrc
+            pass
+        elif sys.platform == "win32":
+            # create _netrc
+            # The "home" path needs to be in the path variables on windows.
+            pass
+        else:
+            print('%s not supported.' % sys.platform)
         
-
     def login(self, use_ssl=True):
         """Login to mgap."""
+        self._set_path()
+        self._create_netrc()
         machine = 'mgap.ohsu.edu'
         name = 'mGAP'
         server_context = labkey.utils.create_server_context(
