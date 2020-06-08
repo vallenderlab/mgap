@@ -1,6 +1,9 @@
 # Accessing mGAP's labkey based api
 # This script targets the client api version 0.4.0 and later
 import sys
+import os
+from pathlib import Path
+
 import labkey
 from pandas.io.json import json_normalize
 
@@ -15,14 +18,13 @@ class MGap:
         self.server_context = self.login()
 
     def _get_os(self, path=None):
-        if sys.platform == "linux":
-            # create .netrc in path or default home
-            pass
-        elif sys.platform == "win32":
-            # create .netrc in path or default home
-            pass
+        if not path:
+            path = str(Path.home())
+            print("Path set to: %s" % path)
+        elif not os.path.exists(path):
+            raise FileNotFoundError("Path does not exist.")
         else:
-            print('%s not supported.' % sys.platform)
+            print("Path set to: %s" % path)
 
     def login(self, use_ssl=True):
         """Login to mgap."""
