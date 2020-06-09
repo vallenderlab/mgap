@@ -17,6 +17,11 @@ class MGap:
 
         self.server_context = self.login()
 
+    def _create_file(self, filename, content):
+        file = open(filename, 'w')
+        file.write(content)
+        file.close()
+
     def _set_path(self):
         if not self.path:
             self.path = str(Path.home())
@@ -26,29 +31,32 @@ class MGap:
         else:
             print("Path set to: %s" % self.path)
         return self.path
-    
-    def _create_netrc(self):
+
+    def create_netrc(self, email, password):
+        self._set_path()
+        machine = "machine mgap.ohsu.edu\n"
+        user_content = "login {}\npassword {}".format(email, password)
+        file_str = machine + user_content
         if sys.platform == "linux":
             # create .netrc
-            pass
+            self._create_file(filename=".netrc", content=file_str)
         elif sys.platform == "win32":
             # create _netrc
             # The "home" path needs to be in the path variables on windows.
-            pass
+            self._create_file(filename="_netrc", content=file_str)
         else:
             print('%s not supported.' % sys.platform)
         
     def login(self, use_ssl=True):
         """Login to mgap."""
-        self._set_path()
-        self._create_netrc()
         machine = 'mgap.ohsu.edu'
         name = 'mGAP'
         server_context = labkey.utils.create_server_context(
             machine, name, use_ssl=use_ssl)
         return server_context
 
-    def get_cohort_data(self, schema_name="study", query_name="demographics", sort="mgapId"):
+    def get_cohort_data(self, schema_name="study", query_name="demographics",
+                        sort="mgapId"):
         cohort_data = labkey.query.select_rows(
             server_context=self.server_context,
             schema_name=schema_name,
