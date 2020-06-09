@@ -11,9 +11,10 @@ from pandas.io.json import json_normalize
 class MGap:
 
     def __init__(self, path=None):
-        self.path = path
         self.centers = ["CPRC", "CNPRC", "TNPRC", "NEPRC",
                         "YNPRC", "ONPRC", "WNPRC", "SNPRC"]
+        
+        self.path = self._set_path(path=path)
 
         self.server_context = self.login()
 
@@ -22,15 +23,15 @@ class MGap:
         file.write(content)
         file.close()
 
-    def _set_path(self):
-        if not self.path:
-            self.path = str(Path.home())
-            print("Path set to: %s" % self.path)
-        elif not os.path.exists(self.path):
+    def _set_path(self, path):
+        if not path:
+            path = str(Path.home())
+            print("Path set to: %s" % path)
+        elif not os.path.exists(path):
             raise FileNotFoundError("Path does not exist.")
         else:
-            print("Path set to: %s" % self.path)
-        return self.path
+            print("Path set to: %s" % path)
+        return path
 
     def create_netrc(self, email, password):
         self._set_path()
