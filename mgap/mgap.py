@@ -68,15 +68,35 @@ class MGap:
 
     def get_sequence_data(self):
         sequence_data = labkey.query.select_rows(
-            server_context=server_context,
+            server_context=self.server_context,
             schema_name='mgap',
             query_name='sequenceDatasets',
             sort='mgapId'
         )
         return sequence_data
 
+    def get_variant_data(self):
+        variant_data = labkey.query.select_rows(
+            server_context=self.server_context,
+            schema_name='mgap',
+            query_name='variantList',
+            filter_array=[
+                labkey.query.QueryFilter('releaseId/rowid', '3835', 'eq')
+            ],
+            sort='contig,position'
+        )
+        return variant_data
 
-server_context = MGap()
+    def normalize_data(data, save=True, filename=None):
+        """Turn the json output to a pandas dataframe."""
+        df = json_normalize(data['rows'])
+    
+        if save:
+            # Save the dataframe to a csv
+            df.to_csv(filename, index=False)
+        return df
+
+server_context = MGap(path=r'C:\Users\shutchins2\Documents\test')
 
 
 def normalize_data(data, save=True, filename=None):
@@ -112,16 +132,6 @@ my_results = labkey.query.select_rows(
     sort='contig,position'
 )
 
-# View all variants
-variant_data = labkey.query.select_rows(
-    server_context=server_context,
-    schema_name='mgap',
-    query_name='variantList',
-    filter_array=[
-        labkey.query.QueryFilter('releaseId/rowid', '3835', 'eq')
-    ],
-    sort='contig,position'
-)
 
 # Turn the json output of the labkey query to a pandas dataframe
 df = json_normalize(variant_data['rows'])
