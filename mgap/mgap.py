@@ -96,27 +96,3 @@ class MGap:
         return df
 
 server_context = MGap(path=r'C:\Users\shutchins2\Documents\test')
-
-
-# Getting phenotype information for the latest genome release
-my_results = labkey.query.select_rows(
-    server_context=server_context,
-    schema_name='mgap',
-    query_name='phenotypes',
-    filter_array=[
-        labkey.query.QueryFilter('releaseId/rowid', '3835', 'eq')
-    ],
-    sort='releaseId/rowId,omim_phenotype'
-)
-
-# Getting variant information for a specific phenotype/omim id
-my_results = labkey.query.select_rows(
-    server_context=server_context,
-    schema_name='mgap',
-    query_name='variantList',
-    filter_array=[
-        labkey.query.QueryFilter('omim_phenotype', '264300', 'contains'),
-        labkey.query.QueryFilter('releaseId/rowid', '3835', 'eq')
-    ],
-    sort='contig,position'
-)
