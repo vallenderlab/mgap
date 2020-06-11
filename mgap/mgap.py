@@ -19,9 +19,8 @@ class MGap:
         self.server_context = self.login()
 
     def _create_file(self, filename, content):
-        file = open(filename, 'w')
-        file.write(content)
-        file.close()
+        with open(filename, 'w') as f:
+            f.write(content)
 
     def _set_path(self, path):
         if not path:
@@ -99,16 +98,6 @@ class MGap:
 server_context = MGap(path=r'C:\Users\shutchins2\Documents\test')
 
 
-def normalize_data(data, save=True, filename=None):
-    """Turn the json output to a pandas dataframe."""
-    df = json_normalize(data['rows'])
-
-    if save:
-        # Save the dataframe to a csv
-        df.to_csv('mgap_demographics.csv', index=False)
-    return df
-
-
 # Getting phenotype information for the latest genome release
 my_results = labkey.query.select_rows(
     server_context=server_context,
@@ -131,10 +120,3 @@ my_results = labkey.query.select_rows(
     ],
     sort='contig,position'
 )
-
-
-# Turn the json output of the labkey query to a pandas dataframe
-df = json_normalize(variant_data['rows'])
-
-# Save the dataframe to a csv
-df.to_csv('all_variants_mgap.csv', index=False)
