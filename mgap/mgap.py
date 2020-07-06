@@ -13,7 +13,7 @@ class MGap:
     def __init__(self, path=None):
         self.centers = ["CPRC", "CNPRC", "TNPRC", "NEPRC",
                         "YNPRC", "ONPRC", "WNPRC", "SNPRC"]
-        
+
         self.path = self._set_path(path=path)
 
         self.server_context = self.login()
@@ -46,7 +46,7 @@ class MGap:
             self._create_file(filename="_netrc", content=file_str)
         else:
             print('%s not supported.' % sys.platform)
-        
+
     def login(self, use_ssl=True):
         """Login to mgap."""
         machine = 'mgap.ohsu.edu'
@@ -86,13 +86,11 @@ class MGap:
         )
         return variant_data
 
-    def normalize_data(data, save=True, filename=None):
+    def normalize_data(self, data, save=True, filename=None):
         """Turn the json output to a pandas dataframe."""
         df = json_normalize(data['rows'])
-    
+
         if save:
             # Save the dataframe to a csv
             df.to_csv(filename, index=False)
         return df
-
-server_context = MGap(path=r'C:\Users\shutchins2\Documents\test')
